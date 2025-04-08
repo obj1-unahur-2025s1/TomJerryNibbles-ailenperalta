@@ -1,17 +1,54 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
+describe "Grupo de test de Tom, Jerry y Nibble" {
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+  test "la velocidad maxima inicial de Tom es 10" {
+    assert.equals(10, tom.velocidadMaxima()) //verifica la igualdad entre dos objetos 
   }
 
-  test "test 3" {
-    assert.that(true)
+  test "tom come a jerry: velocidad 15.2" {
+    tom.comer(jerry)
+    assert.equals(15.2, tom.velocidadMaxima()) 
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "tom come a jerry: energia 102" {
+    tom.comer(jerry)
+    assert.equals(102, tom.energia())
   }
 
+  test "tom corre 24 mts: velocidad 14 y energia 90" { //es mejor hacer un test por cada assert
+    tom.comer(jerry)
+    tom.correr(24)
+    assert.equals(14, tom.velocidadMaxima())
+    assert.equals(90, tom.energia())
+  }
+
+  test "tom come a nibbles: velocidad 18.7 y energia 137" {
+    tom.comer(nibbles)
+    assert.equals(18.7, tom.velocidadMaxima())
+    assert.equals(137, tom.energia())
+  }
+
+  test "jerry cumple años, tom lo come: velocidad 25.9 y energia 209" {
+    jerry.cumplirAnios()
+    tom.comer(jerry)
+    assert.equals(25.9, tom.velocidadMaxima())
+    assert.equals(209, tom.energia())
+
+  }
+
+  test "tom puede cazar un rato que esta a 99" { 
+    assert.that(tom.puedeCazar(99)) //verifica que el objeto resultado es un booleano true 
+  }
+
+  test "tom no puede cazar un rato que esta a 120" {
+    assert.notThat(tom.puedeCazar(120)) //verifica que el objeto resultado es un booleano false
+  }
+
+  test "tom caza a nibbles que esta a 50 mts: velocidad maxima es 12.2 y energia 72" {
+    tom.cazar(nibbles, 50)
+    assert.equals(12.2, tom.velocidadMaxima())
+    assert.equals(72, tom.energia())
+  }
 }
+
